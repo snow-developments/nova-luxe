@@ -5,9 +5,63 @@
   "description": "luxe game engine integration for Nova.",
   "version": "1.0",
   "license": "BSD 3-Clause",
-  "categories": ["tasks"],
+  "categories": ["tasks", "languages", "completions"],
   "main": "main.js",
+  "min_runtime": "2.0",
   "activationEvents": [
     "onWorkspaceContains:project.luxe"
-  ]
+  ],
+  "entitlements": {
+    "process": true
+  },
+  "taskTemplates": {
+    "luxe": {
+      "name": "luxe",
+      "description": "Debug luxe applications.",
+      "tasks": {
+        "build": {
+          "resolve": "luxe"
+        },
+        "run": {
+          "resolve": "luxe"
+        }
+      },
+      "config": [
+        {
+          "key": "launchPath",
+          "title": "Application",
+          "type": "path",
+          "filetype": ["project.luxe"],
+          "required": true,
+          "placeholder": "Automatic",
+          "description": "The application to launch. If 'Automatic', defaults to 'project.luxe' at the root directory of the current workspace."
+        },
+        {
+          "key": "cwd",
+          "title": "Working Directory",
+          "type": "path",
+          "placeholder": "Automatic",
+          "allowFiles": false,
+          "allowFolders": true,
+          "description": "Working directory assigned to the launched application. If 'Automatic', defaults to the root directory of the current workspace."
+        },
+        {
+          "key": "launchArgs",
+          "title": "Launch Arguments",
+          "description": "Additional command-line arguments to pass to the application when launching.",
+          "type": "stringArray"
+        },
+        {
+          "type": "section",
+          "title": "luxe Configuration"
+        },
+        {
+          "key": "args",
+          "title": "luxe Arguments",
+          "description": "Additional command-line arguments to pass to luxe when launching.",
+          "type": "stringArray"
+        }
+      ]
+    }
+  }
 }
