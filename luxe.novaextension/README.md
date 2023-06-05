@@ -36,8 +36,8 @@ To run luxe's _Run_ action:
 
 - Click the **Run** 🔨 button in the project toolbar;
 - Select the **Project → Run** menu item;
-- Press **Command-B**; or
-- Open the command palette and type `build`
+- Press **Command-R**; or
+- Open the command palette and type `run`
 
 ### Configuration
 
