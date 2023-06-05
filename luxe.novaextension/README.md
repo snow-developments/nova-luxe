@@ -1,20 +1,12 @@
 <!--
-💡 Quick Tip! As you edit this README template, you can preview your changes by selecting **Extensions → Activate Project as Extension**, opening the Extension Library, and selecting "{{ name }}" in the sidebar.
+💡 Quick Tip! As you edit this README template, you can preview your changes by selecting **Extensions → Activate Project as Extension**, opening the Extension Library, and selecting "luxe" in the sidebar.
 -->
 
 luxe provides Task, Language, and Debugging integration via the luxe command-line tools, including running luxe applications, editing luxe assets, and _a little-known secret!_
 
-<!--
-🎈 It can also be helpful to include a screenshot or GIF showing your extension in action:
--->
-
 ![](https://nova.app/images/en/dark/editor.png)
 
 ## Requirements
-
-<!--
-🎈 If your extension depends on external processes or tools that users will need to have, it's helpful to list those and provide links to their installers:
--->
 
 luxe requires some additional tools to be installed on your Mac:
 
@@ -41,6 +33,6 @@ To run luxe's _Run_ action:
 
 ### Configuration
 
-To configure global preferences, open **Extensions → Extension Library...** then select {{ name }}'s **Preferences** tab.
+To configure global preferences, open **Extensions → Extension Library...** then select luxe's **Preferences** tab.
 
 You can also configure preferences on a per-project basis in **Project → Project Settings...**
