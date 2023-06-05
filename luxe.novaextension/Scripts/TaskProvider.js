@@ -16,7 +16,7 @@ class TaskProvider {
    */
   async resolveTaskAction(context) {
     // TODO: Support `build` and `deploy` tasks
-    if (context.action !== Task.Run) return null;
+    if (context.action !== Task.Run || context.action !== Task.Build) return null;
     // TODO: Are there things to cleanup on behalf of luxe?
     // else if (context.action.type === Task.Clean)
     // See https://docs.nova.app/api-reference/configuration/#getkey-coerce
@@ -29,7 +29,8 @@ class TaskProvider {
     const cwd = nova.path.normalize(config.get("cwd", "string") || nova.workspace.path);
 
     const action = new TaskProcessAction(LUXE_EXE, {
-      args: ["run", launchPath].concat(launchArgs),
+      // FIXME: Why doesn't the build task work?
+      args: [context.action === Task.Run ? "run" : "build", launchPath].concat(launchArgs),
       stdio: ["ignore", "pipe", "pipe"],
       cwd,
       // TODO: Forward errors to a problem matcher
