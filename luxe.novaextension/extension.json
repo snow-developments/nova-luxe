@@ -1,7 +1,7 @@
 {
   "identifier": "llc.snow.luxe",
   "name": "luxe",
-  "organization": "MyOrganization",
+  "organization": "Snow Developments",
   "description": "luxe game engine integration for Nova.",
   "version": "1.0",
   "license": "BSD 3-Clause",
