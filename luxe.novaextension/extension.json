@@ -1,0 +1,13 @@
+{
+  "identifier": "llc.snow.luxe",
+  "name": "luxe",
+  "organization": "MyOrganization",
+  "description": "luxe game engine integration for Nova.",
+  "version": "1.0",
+  "license": "BSD 3-Clause",
+  "categories": ["tasks"],
+  "main": "main.js",
+  "activationEvents": [
+    "onWorkspaceContains:project.luxe"
+  ]
+}

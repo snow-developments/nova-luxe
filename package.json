@@ -1,0 +1,24 @@
+{
+  "name": "nova-luxe",
+  "private": true,
+  "version": "0.1.0",
+  "description": "luxe game engine integration for Nova.",
+  "main": "index.js",
+  "scripts": {
+    "test": "false",
+    "prepublishOnly": "nova extension publish luxe.novaextension"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/snow-developments/nova-luxe.git"
+  },
+  "author": "Snow Developments",
+  "license": "BSD 3-Clause",
+  "bugs": {
+    "url": "https://github.com/snow-developments/nova-luxe/issues"
+  },
+  "homepage": "https://github.com/snow-developments/nova-luxe#readme",
+  "devDependencies": {
+    "@types/nova-editor": "*"
+  }
+}
