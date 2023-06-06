@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<syntax name="emsl">
+  <meta>
+    <name>emsl</name>
+    <type>compiled</type>
+    <preferred-file-extension>emsl</preferred-file-extension>
+  </meta>
+
+  <detectors>
+    <extension priority="1.0">emsl</extension>
+  </detectors>
+
+  <indentation>
+    <increase>
+      <expression>\{</expression>
+    </increase>
+    <decrease>
+      <expression>\}</expression>
+    </decrease>
+  </indentation>
+
+  <comments>
+    <single>
+      <expression>//</expression>
+    </single>
+  </comments>
+
+  <brackets>
+    <pair open="{" close="}" />
+    <pair open="[" close="]" />
+    <pair open="(" close=")" />
+  </brackets>
+
+  <surrounding-pairs>
+    <pair open="{" close="}" />
+    <pair open="[" close="]" />
+    <pair open="(" close=")" />
+    <pair open="&quot;" close="&quot;" />
+  </surrounding-pairs>
+
+  <scopes>
+    <include syntax="self" collection="comments" />
+    <include syntax="self" collection="strings" />
+    <include syntax="self" collection="values" />
+    <include syntax="self" collection="variables" />
+    <include syntax="self" collection="blocks" />
+    <include syntax="self" collection="keywords" />
+
+    <scope name="emsl.function">
+      <symbol type="function" />
+      <starts-with>
+        <expression>\b(fn|input|vertex|fragment|compute|geometry|fx)\s+([A-Za-z0-9_]+)\s+\{</expression>
+        <capture number="2" name="emsl.function.name" />
+      </starts-with>
+      <ends-with>
+        <expression>\}</expression>
+      </ends-with>
+      <subscopes>
+        <include syntax="self" collection="comments" />
+        <include syntax="self" collection="strings" />
+        <include syntax="self" collection="values" />
+        <include syntax="self" collection="variables" />
+        <include syntax="self" collection="blocks" />
+        <include syntax="self" collection="keywords" />
+      </subscopes>
+    </scope>
+  </scopes>
+
+  <collections>
+    <!-- Comments -->
+    <collection name="comments">
+      <scope name="emsl.comment" spell-check="true">
+        <symbol type="comment" />
+        <starts-with>
+          <expression>\/\/</expression>
+        </starts-with>
+        <ends-with>
+          <expression>$</expression>
+        </ends-with>
+      </scope>
+      <scope name="emsl.comment.block" spell-check="true">
+        <starts-with>
+          <expression>\/\*</expression>
+        </starts-with>
+        <ends-with>
+          <expression>\*\/</expression>
+        </ends-with>
+      </scope>
+    </collection>
+
+    <!-- Blocks -->
+    <collection name="blocks">
+      <scope name="emsl.block">
+        <symbol type="block">
+          <context behavior="subtree" />
+        </symbol>
+        <starts-with>
+          <expression>\{</expression>
+          <capture number="0" name="emsl.block.bracket" />
+        </starts-with>
+        <ends-with>
+          <expression>\}</expression>
+          <capture number="0" name="emsl.block.bracket" />
+        </ends-with>
+        <subscopes>
+            <include syntax="self" />
+        </subscopes>
+      </scope>
+    </collection>
+
+    <!-- Keywords (Control Flow) -->
+    <collection name="keywords">
+      <scope name="emsl.keyword.control">
+        <symbol type="keyword" />
+        <strings word-boundary="true">
+          <string>return</string>
+          <string>if</string>
+          <string>for</string>
+          <string>while</string>
+          <string>else</string>
+        </strings>
+      </scope>
+      <scope name="emsl.keyword.function">
+        <symbol type="keyword" />
+        <strings word-boundary="true">
+          <string>fn</string>
+          <string>input</string>
+          <string>vertex</string>
+          <string>fragment</string>
+          <string>compute</string>
+          <string>geometry</string>
+          <string>fx</string>
+        </strings>
+      </scope>
+      <scope name="emsl.keyword.io">
+        <symbol type="keyword" />
+        <strings word-boundary="true">
+          <string>in</string>
+          <string>out</string>
+          <string>stage</string>
+          <string>input</string>
+        </strings>
+      </scope>
+      <scope name="emsl.keyword.types">
+        <symbol type="type" />
+        <strings word-boundary="true">
+          <string>void</string>
+          <string>bool</string>
+          <string>int</string>
+          <string>uint</string>
+          <string>float</string>
+          <string>double</string>
+          <string>bool2</string>
+          <string>int2</string>
+          <string>uint2</string>
+          <string>float2</string>
+          <string>double2</string>
+          <string>bool3</string>
+          <string>int3</string>
+          <string>uint3</string>
+          <string>float3</string>
+          <string>double3</string>
+          <string>bool4</string>
+          <string>int4</string>
+          <string>uint4</string>
+          <string>float4</string>
+          <string>double4</string>
+          <string>mat3</string>
+          <string>mat4</string>
+          <string>image1D</string>
+          <string>image2D</string>
+          <string>image3D</string>
+          <string>image1DStorage</string>
+          <string>image2DStorage</string>
+          <string>image3DStorage</string>
+          <string>imageCube</string>
+          <string>imageSampler</string>
+        </strings>
+      </scope>
+    </collection>
+
+    <!-- Fields -->
+    <collection name="variables">
+      <scope name="emsl.identifier.variable" spell-check="true">
+        <symbol type="variable" />
+        <expression>()\s+([A-Za-z0-9_]+)\b</expression>
+        <capture number="1" name="emsl.keyword" />
+        <capture number="2" name="emsl.variable.name" />
+      </scope>
+    </collection>
+
+    <!-- Values -->
+    <collection name="values">
+      <!-- Boolean -->
+      <scope name="emsl.literal.boolean">
+        <symbol type="keyword" />
+        <strings word-boundary="true">
+          <string>true</string>
+          <string>false</string>
+        </strings>
+      </scope>
+      <!-- Number -->
+      <scope name="emsl.literal.number">
+        <!-- FIXME: Support scientific and hexadecimal notation -->
+        <!--
+          0.0314159e02
+          0.0314159e+02
+          314.159e-02
+          0xcaffe2
+        -->
+        <expression>-?[\-0-9]+(\.?[\-0-9]+)?</expression>
+      </scope>
+      <scope name="emsl.literal.null">
+        <symbol type="keyword" />
+        <expression>null</expression>
+      </scope>
+    </collection>
+    <collection name="strings">
+      <!-- Strings -->
+      <scope name="emsl.literal.string">
+        <starts-with>
+            <expression>"</expression>
+            <capture number="0" name="emsl.delimiter.quote" />
+        </starts-with>
+        <ends-with>
+            <expression>"</expression>
+            <capture number="0" name="emsl.delimiter.quote" />
+        </ends-with>
+        <subscopes>
+        </subscopes>
+      </scope>
+    </collection>
+  </collections>
+</syntax>

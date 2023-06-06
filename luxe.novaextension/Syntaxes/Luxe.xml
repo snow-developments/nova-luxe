@@ -110,7 +110,6 @@
         -->
         <expression>-?[\-0-9]+(\.?[\-0-9]+)?</expression>
       </scope>
-      <!-- TODO: Add Ranges (See https://luxe.io/values.html#ranges) -->
       <scope name="luxe.literal.null">
         <expression>null</expression>
       </scope>

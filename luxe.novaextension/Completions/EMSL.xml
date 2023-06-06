@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<completions>
+  <provider>
+    <syntax>emsl</syntax>
+    <expression>\b[a-zA-Z]*</expression>
+    <set>emsl.keywords</set>
+    <set>emsl.storage</set>
+    <set>emsl.types</set>
+  </provider>
+
+  <!-- Keywords -->
+  <set name="emsl.keywords">
+    <completion string="return" />
+    <completion string="if" />
+    <completion string="for" />
+    <completion string="while" />
+    <completion string="else" />
+    <completion string="fn" />
+    <completion string="input" />
+    <completion string="vertex" />
+    <completion string="fragment" />
+    <completion string="compute" />
+    <completion string="geometry" />
+    <completion string="fx" />
+  </set>
+
+  <!-- Storage Modifiers -->
+  <set name="emsl.storage">
+    <completion string="in" />
+    <completion string="out" />
+    <completion string="stage" />
+    <completion string="input" />
+  </set>
+
+  <!-- Types -->
+  <set name="emsl.types">
+    <completion string="void" />
+    <completion string="bool" />
+    <completion string="int" />
+    <completion string="uint" />
+    <completion string="float" />
+    <completion string="double" />
+    <completion string="bool2" />
+    <completion string="int2" />
+    <completion string="uint2" />
+    <completion string="float2" />
+    <completion string="double2" />
+    <completion string="bool3" />
+    <completion string="int3" />
+    <completion string="uint3" />
+    <completion string="float3" />
+    <completion string="double3" />
+    <completion string="bool4" />
+    <completion string="int4" />
+    <completion string="uint4" />
+    <completion string="float4" />
+    <completion string="double4" />
+    <completion string="mat3" />
+    <completion string="mat4" />
+    <completion string="image1D" />
+    <completion string="image2D" />
+    <completion string="image3D" />
+    <completion string="image1DStorage" />
+    <completion string="image2DStorage" />
+    <completion string="image3DStorage" />
+    <completion string="imageCube" />
+    <completion string="imageSampler" />
+  </set>
+
+  <!-- Built-in Functions -->
+  <set name="emsl.builtins.functions">
+    <completion string="Bool" />
+    <completion string="Class" />
+    <completion string="Fiber" />
+    <completion string="Fn" />
+    <completion string="List" />
+    <completion string="Map" />
+    <completion string="Null" />
+    <completion string="Num" />
+    <completion string="Object" />
+    <completion string="Range" />
+    <completion string="Sequence" />
+    <completion string="String" />
+    <completion string="System" />
+  </set>
+</completions>
