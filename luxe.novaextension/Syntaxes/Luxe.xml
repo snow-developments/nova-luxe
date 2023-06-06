@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<syntax name="luxe">
+  <meta>
+    <name>luxe</name>
+    <type>structured</type>
+    <preferred-file-extension>lx</preferred-file-extension>
+  </meta>
+
+  <detectors>
+    <extension priority="1.0">lx</extension>
+  </detectors>
+
+  <indentation>
+    <increase>
+      <expression>\{</expression>
+    </increase>
+    <decrease>
+      <expression>\}</expression>
+    </decrease>
+  </indentation>
+
+  <comments>
+    <single>
+      <expression>//</expression>
+    </single>
+  </comments>
+
+  <brackets>
+    <pair open="{" close="}" />
+    <pair open="[" close="]" />
+    <pair open="(" close=")" />
+  </brackets>
+
+  <surrounding-pairs>
+    <pair open="{" close="}" />
+    <pair open="[" close="]" />
+    <pair open="(" close=")" />
+    <pair open="&quot;" close="&quot;" />
+  </surrounding-pairs>
+
+  <scopes>
+    <include syntax="self" collection="comments" />
+    <include syntax="self" collection="strings" />
+    <include syntax="self" collection="values" />
+    <include syntax="self" collection="fields" />
+    <include syntax="self" collection="blocks" />
+  </scopes>
+
+  <collections>
+    <!-- Comments -->
+    <collection name="comments">
+      <scope name="luxe.comment" spell-check="true">
+        <symbol type="comment" />
+        <starts-with>
+          <expression>\/\/</expression>
+        </starts-with>
+        <ends-with>
+          <expression>$</expression>
+        </ends-with>
+      </scope>
+    </collection>
+
+    <!-- Blocks -->
+    <collection name="blocks">
+      <scope name="luxe.block">
+        <symbol type="block">
+          <context behavior="subtree" />
+        </symbol>
+        <starts-with>
+          <expression>\{</expression>
+          <capture number="0" name="luxe.block.bracket" />
+        </starts-with>
+        <ends-with>
+          <expression>\}</expression>
+          <capture number="0" name="luxe.block.bracket" />
+        </ends-with>
+        <subscopes>
+            <include syntax="self" />
+        </subscopes>
+      </scope>
+    </collection>
+
+    <!-- Fields -->
+    <collection name="fields">
+      <symbol type="tag" />
+      <scope name="luxe.identifier.field" spell-check="true">
+        <expression>([A-Za-z0-9_]+)\s*=\s*</expression>
+        <capture number="1" name="luxe.tag.name" />
+      </scope>
+    </collection>
+
+    <!-- Values -->
+    <collection name="values">
+      <!-- Boolean -->
+      <scope name="luxe.literal.boolean">
+        <strings word-boundary="true">
+          <string>true</string>
+          <string>false</string>
+        </strings>
+      </scope>
+      <!-- Number -->
+      <scope name="luxe.literal.number">
+        <!-- FIXME: Support scientific and hexadecimal notation -->
+        <!--
+          0.0314159e02
+          0.0314159e+02
+          314.159e-02
+          0xcaffe2
+        -->
+        <expression>-?[\-0-9]+(\.?[\-0-9]+)?</expression>
+      </scope>
+      <!-- TODO: Add Ranges (See https://luxe.io/values.html#ranges) -->
+      <scope name="luxe.literal.null">
+        <expression>null</expression>
+      </scope>
+      <scope name="luxe.literal.list">
+        <symbol type="block">
+          <context behavior="subtree" />
+        </symbol>
+        <starts-with>
+          <expression>\[</expression>
+          <capture number="0" name="luxe.delimiter.bracket" />
+        </starts-with>
+        <ends-with>
+          <expression>\]</expression>
+          <capture number="0" name="luxe.delimiter.bracket" />
+        </ends-with>
+        <subscopes>
+          <include syntax="self" collection="comments" />
+          <include syntax="self" collection="blocks" />
+          <include syntax="self" collection="identifiers" />
+          <include syntax="self" collection="values" />
+          <include syntax="self" collection="strings" />
+        </subscopes>
+      </scope>
+    </collection>
+    <collection name="strings">
+      <!-- Strings -->
+      <scope name="luxe.literal.string">
+        <starts-with>
+            <expression>"</expression>
+            <capture number="0" name="luxe.delimiter.quote" />
+        </starts-with>
+        <ends-with>
+            <expression>"</expression>
+            <capture number="0" name="luxe.delimiter.quote" />
+        </ends-with>
+        <subscopes>
+        </subscopes>
+      </scope>
+    </collection>
+  </collections>
+</syntax>
