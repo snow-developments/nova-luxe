@@ -8,6 +8,7 @@
 
   <detectors>
     <extension priority="1.0">lx</extension>
+    <extension priority="0.5">layer</extension>
   </detectors>
 
   <indentation>
