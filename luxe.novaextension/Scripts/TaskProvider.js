@@ -15,8 +15,7 @@ class TaskProvider {
    * @param context TaskActionResolveContext
    */
   async resolveTaskAction(context) {
-    // TODO: Support `build` and `deploy` tasks
-    if (context.action !== Task.Run || context.action !== Task.Build) return null;
+    if (context.action === Task.Clean) return null;
     // TODO: Are there things to cleanup on behalf of luxe?
     // else if (context.action.type === Task.Clean)
     // See https://docs.nova.app/api-reference/configuration/#getkey-coerce
@@ -33,8 +32,8 @@ class TaskProvider {
       args: [context.action === Task.Run ? "run" : "build", launchPath].concat(launchArgs),
       stdio: ["ignore", "pipe", "pipe"],
       cwd,
-      // TODO: Forward errors to a problem matcher
-      matchers: []
+      // See https://docs.nova.app/extensions/issue-matchers
+      matchers: ["luxe"]
     });
 
     // Launch the debugee

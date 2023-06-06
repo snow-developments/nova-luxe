@@ -63,5 +63,17 @@
         }
       ]
     }
+  },
+  "issueMatchers": {
+    "luxe": {
+      "pattern": {
+        "regexp": "^> \\[Error\\]\\s+(.+?)\\s+- from: ([^:]+?):(\\d+):(\\d+)",
+        "message": 1,
+        "file": 2,
+        "line": 3,
+        "column": 4,
+        "severity": "error"
+      }
+    }
   }
 }
