@@ -33,6 +33,7 @@ class TaskProvider {
       stdio: ["ignore", "pipe", "pipe"],
       cwd,
       // See https://docs.nova.app/extensions/issue-matchers
+      // See https://regex101.com/r/tY9P8M/1
       matchers: ["luxe"]
     });
 
