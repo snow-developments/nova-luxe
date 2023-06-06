@@ -13,7 +13,8 @@
   "activationEvents": [
     "onLanguage:luxe",
     "onLanguage:wren",
-    "onWorkspaceContains:project.luxe"
+    "onWorkspaceContains:project.luxe",
+    "onWorkspaceContains:module.lx"
   ],
   "entitlements": {
     "process": true
