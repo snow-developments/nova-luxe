@@ -6,6 +6,8 @@
   "version": "1.0",
   "license": "BSD 3-Clause",
   "categories": ["tasks", "languages", "completions"],
+  "repository": "https://github.com/snow-developments/nova-luxe",
+  "bugs": "https://github.com/snow-developments/nova-luxe/issues",
   "main": "main.js",
   "min_runtime": "2.0",
   "activationEvents": [
