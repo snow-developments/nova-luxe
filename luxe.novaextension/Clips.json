@@ -32,6 +32,13 @@
           "trigger": "setter"
         },
         {
+          "content": "material = {\n  basis = \"${2:luxe: material_basis/sprite_pixelated}\"\n  inputs = { sprite.image = \"image/$1\" }\n}",
+          "name": "material",
+          "scope": "editor",
+          "syntax": "luxe",
+          "trigger": "material"
+        },
+        {
           "content": "modifier = {\n  script = \"modifier/$0\"\n  description = \"Makes an entity ${2:different}.\"\n  field = \"$0\"\n  display = \"$1\"\n  class = \"$1\"\n  block = {\n    fields = [\n      { name=\"size\" type=\"number\" default=0 }\n    ]\n  }\n}",
           "name": "custom modifier",
           "scope": "editor",
